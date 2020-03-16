@@ -17,7 +17,6 @@ class Deck
   end
 
   def remove_card
-    require "pry"; binding.pry
     @cards.shift
   end
 end
