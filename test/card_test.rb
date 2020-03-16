@@ -11,7 +11,8 @@ class CardTest < Minitest::Test
     assert_instance_of Card, @card
   end
 
-  def test_it_has_readable_attributes    
+  def test_it_has_readable_attributes
+    skip 
     assert_equal :diamond, @card.suit
     assert_equal 'Queen', @card.value
     assert_equal 12, @card.rank
