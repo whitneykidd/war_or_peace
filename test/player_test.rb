@@ -21,4 +21,13 @@ class PlayerTest < Minitest::Test
     assert_equal 'Clarisa', @player.name
     assert_equal @deck, @player.deck
   end
+
+  def test_can_return_has_lost_status
+    assert_equal false, @player.has_lost?
+    @player.deck.remove_card
+    @player.deck.remove_card
+    @player.deck.remove_card
+    assert_equal true, @player.has_lost?
+
+  end
 end
