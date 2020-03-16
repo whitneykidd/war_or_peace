@@ -9,6 +9,7 @@ class DeckTest < Minitest::Test
     @card1 = Card.new(:diamond, 'Queen', 12)
     @card2 = Card.new(:spade, '3', 3)
     @card3 = Card.new(:heart, 'Ace', 14)
+    @card4 = Card.new(:club, '5', 5)
     @cards = [@card1, @card2, @card3]
     @deck = Deck.new(@cards)
   end
@@ -36,6 +37,11 @@ class DeckTest < Minitest::Test
 
   def test_can_remove_top_card_from_deck
     @deck.remove_card
-    assert_equal [@card2, @card3], @deck.cards  
+    assert_equal [@card2, @card3], @deck.cards
+  end
+
+  def test_can_add_card_to_bottom_of_deck
+    @deck.add_card(@card4)
+    assert_equal [@card1, @card2, @card3, @card4], @deck.cards
   end
 end
