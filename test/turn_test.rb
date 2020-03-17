@@ -28,4 +28,9 @@ class TurnTest < Minitest::Test
   def test_it_exists
     assert_instance_of Turn, @turn
   end
+
+  def test_it_has_attributes
+    assert_equal @player1, @turn.player1
+    assert_equal @player2, @turn.player2
+  end
 end
