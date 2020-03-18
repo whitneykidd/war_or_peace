@@ -34,10 +34,31 @@ class Turn
     end
   end
 
+  def players
+    [@player1, @player2]
+  end
+
   def pile_cards
     if type == :basic
       spoils_of_war << @player1.deck.cards[0]
       spoils_of_war << @player2.deck.cards[0]
+    elsif type == :war
+      # creates nested array in array - maybe create players collection +
+      # iterate to create single array?
+      # cards = []
+      # cards << @player1.deck.cards[0..2]
+      # cards << @player2.deck.cards[0..2]
+      # cards.flat_map do |card|
+      #   spoils_of_war << card
+    else type == :mutually_assured_destruction
+      @player1.deck.cards.drop(0)
+      @player1.deck.cards.drop(1)
+      @player1.deck.cards.drop(2)
+
+      @player2.deck.cards.drop(0)
+      @player2.deck.cards.drop(1)
+      @player2.deck.cards.drop(2)
+
     end
   end
 

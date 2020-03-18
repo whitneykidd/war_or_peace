@@ -52,7 +52,8 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
     assert_equal :war, turn.type
     assert_equal player2, turn.winner
-
+    turn.pile_cards
+    # assert_equal [@card1, @card2, @card5, @card4, @card3, @card6], turn.spoils_of_war
   end
 
   def test_returns_mutually_assured_destruction_turn
@@ -74,5 +75,9 @@ class TurnTest < Minitest::Test
     turn = Turn.new(player1, player2)
     assert_equal :mutually_assured_destruction, turn.type
     assert_equal "No Winner", turn.winner
+    turn.pile_cards
+    assert_equal [], turn.spoils_of_war
+    # assert_equal [card8], turn.deck5
+    # assert_equal [card7], turn.deck6
   end
 end
