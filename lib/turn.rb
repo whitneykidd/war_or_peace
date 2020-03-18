@@ -8,7 +8,12 @@ class Turn
 
   def type
     if @player1.deck.cards[0].rank != @player2.deck.cards[0].rank
+      require "pry"; binding.pry
       :basic
+    elsif @player1.deck.cards[0].rank == @player2.deck.cards[0].rank && @player1.deck.cards[2].rank != @player2.deck.cards[2].rank
+      :war
+    else @player1.deck.cards[0].rank == @player2.deck.cards[0].rank && @player1.deck.cards[2].rank == @player2.deck.cards[2].rank
+      :mutually_assured_destruction
     end
   end
 end
