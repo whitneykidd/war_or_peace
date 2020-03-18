@@ -38,4 +38,8 @@ class TurnTest < Minitest::Test
   def test_returns_basic_type_of_turn
     assert_equal :basic, @turn.type
   end
+
+  def test_returns_basic_turn_winner
+    assert_equal @player1, @turn.winner
+  end
 end
