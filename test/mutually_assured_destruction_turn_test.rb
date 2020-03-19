@@ -40,6 +40,6 @@ class MutuallyAssuredDestructionTurnTest < Minitest::Test
   end
 
   def test_returns_mutually_assured_destruction_turn_winner
-    assert_equal @player2, @turn.winner
+    assert_equal "No Winner", @turn.winner
   end
 end
