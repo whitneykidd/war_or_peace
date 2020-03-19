@@ -17,14 +17,6 @@ class Turn
     end
   end
 
-  def zero_index_rank(player)
-    player.deck.rank_of_card_at(0)
-  end
-
-  def two_index_rank(player)
-    player.deck.rank_of_card_at(2)
-  end
-
   def winner
     if type == :basic
       if zero_index_rank(@player1) > zero_index_rank(@player2)
@@ -34,7 +26,7 @@ class Turn
       end
 
     elsif type == :war
-      if two_index_rank(@player1) > two_index(@player2)
+      if two_index_rank(@player1) > two_index_rank(@player2)
         @player1
       else
         @player2
@@ -69,10 +61,19 @@ class Turn
     end
   end
 
+  #Helper Methods
+  def zero_index_rank(player)
+    player.deck.rank_of_card_at(0)
+  end
+
+  def two_index_rank(player)
+    player.deck.rank_of_card_at(2)
+  end
+
   def delete_cards(player)
     2.times do
-    player.deck.cards.map do |card|
-      player.deck.cards.delete_at(0)
+      player.deck.cards.map do |card|
+        player.deck.cards.delete_at(0)
       end
     end
   end
