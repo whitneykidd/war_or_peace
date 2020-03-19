@@ -30,7 +30,7 @@ class Turn
       else
         @player2
       end
-    else type == :mutually_assured_destruction
+    else 
       "No Winner"
     end
   end
