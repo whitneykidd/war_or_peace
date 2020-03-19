@@ -34,4 +34,8 @@ class MutuallyAssuredDestructionTurnTest < Minitest::Test
     assert_equal @player2, @turn.player2
     assert_equal [], @turn.spoils_of_war
   end
+
+  def test_returns_war_type_of_turn
+    assert_equal :mutually_assured_destruction, @turn.type
+  end
 end
