@@ -21,6 +21,12 @@ class Turn
       else
         @player2
       end
+    else type == :war
+      if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+        @player1
+      else
+        @player2
+      end
     end
   end
 
