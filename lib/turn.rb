@@ -40,7 +40,11 @@ class Turn
     end
   end
 
-  def award_spoils
-
+  def award_spoils(winner)
+    if type == :basic
+      @spoils_of_war.map do |card|
+        winner.deck.cards << card
+      end
+    end
   end
 end
