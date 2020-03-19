@@ -7,34 +7,34 @@ class Turn
   end
 
   def type
-    if zero_index(@player1) != zero_index(@player2)
+    if zero_index_rank(@player1) != zero_index_rank(@player2)
       :basic
-    elsif zero_index(@player1) == zero_index(@player2) &&
-      two_index(@player1) != two_index(@player2)
+    elsif zero_index_rank(@player1) == zero_index_rank(@player2) &&
+      two_index_rank(@player1) != two_index_rank(@player2)
       :war
     else
       :mutually_assured_destruction
     end
   end
 
-  def zero_index(player)
+  def zero_index_rank(player)
     player.deck.rank_of_card_at(0)
   end
 
-  def two_index(player)
+  def two_index_rank(player)
     player.deck.rank_of_card_at(2)
   end
 
   def winner
     if type == :basic
-      if @player1.deck.rank_of_card_at(0) > @player2.deck.rank_of_card_at(0)
+      if zero_index_rank(@player1) > zero_index_rank(@player2)
         @player1
       else
         @player2
       end
 
     elsif type == :war
-      if @player1.deck.rank_of_card_at(2) > @player2.deck.rank_of_card_at(2)
+      if two_index_rank(@player1) > two_index(@player2)
         @player1
       else
         @player2
