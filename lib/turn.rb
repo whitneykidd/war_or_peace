@@ -11,10 +11,8 @@ class Turn
       :basic
     elsif @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) &&
       @player1.deck.rank_of_card_at(2) != @player2.deck.rank_of_card_at(2)
-
       :war
-    else @player1.deck.rank_of_card_at(0) == @player2.deck.rank_of_card_at(0) &&
-      @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+    else
       :mutually_assured_destruction
     end
   end
@@ -47,7 +45,7 @@ class Turn
       @spoils_of_war << @player2.deck.cards[0..2] && delete_cards(@player2)
       @spoils_of_war.flatten!
 
-    else 
+    else
       delete_cards(@player1)
       delete_cards(@player2)
     end
