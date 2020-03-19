@@ -47,7 +47,7 @@ class Turn
       @spoils_of_war << @player2.deck.cards[0..2] && delete_cards(@player2)
       @spoils_of_war.flatten!
 
-    else type == :mutually_assured_destruction
+    else 
       delete_cards(@player1)
       delete_cards(@player2)
     end
