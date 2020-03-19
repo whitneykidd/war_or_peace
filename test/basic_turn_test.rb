@@ -39,6 +39,11 @@ class BasicTurnTest < Minitest::Test
     assert_equal :basic, @turn.type
   end
 
+  def test_returns_card_zero_index
+    assert_equal 11, @turn.zero_index(@player1)
+    assert_equal 9, @turn.zero_index(@player2)
+  end
+
   def test_returns_basic_turn_winner
     assert_equal @player1, @turn.winner
   end
