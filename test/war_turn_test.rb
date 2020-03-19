@@ -43,4 +43,18 @@ class WarTurnTest < Minitest::Test
     assert_equal @player2, @turn.winner
   end
 
+
+  def test_can_pile_basic_turn_cards
+    @turn.pile_cards
+    assert_equal [@card1, @card2, @card5, @card4, @card3, @card6], @turn.spoils_of_war
+  end
+
+  def test_can_award_spoils_for_basic_turn
+    skip
+    @turn.pile_cards
+    @turn.award_spoils
+    assert_equal [@card8, @card1, @card2, @card5, @card4, @card3, @card6], @player1.deck.cards
+    assert_equal [@card7], @player2.deck.cards
+
+  end
 end
