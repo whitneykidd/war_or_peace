@@ -5,7 +5,7 @@ require './lib/deck'
 require './lib/player'
 require './lib/turn'
 
-class TurnTest < Minitest::Test
+class BasicTurnTest < Minitest::Test
   def setup
     @card1 = Card.new(:heart, 'Jack', 11)
     @card2 = Card.new(:heart, '10', 10)
@@ -46,5 +46,12 @@ class TurnTest < Minitest::Test
   def test_can_pile_basic_turn_cards
     @turn.pile_cards
     assert_equal [@card1, @card3], @turn.spoils_of_war
+  end
+
+  def test_can_award_spoils_for_basic_turn
+    @turn.pile_cards
+    @turn.award_spoils
+    assert_equal [@card2, @card5, @card8, @card1, @card3], @player1.deck.cards
+    assert_equal [@card4, @card6, @card7], @player2.deck.cards
   end
 end
