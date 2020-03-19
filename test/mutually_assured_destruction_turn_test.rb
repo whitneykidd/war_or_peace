@@ -42,4 +42,11 @@ class MutuallyAssuredDestructionTurnTest < Minitest::Test
   def test_returns_mutually_assured_destruction_turn_winner
     assert_equal "No Winner", @turn.winner
   end
+
+  def test_does_not_pile_cards_for_mutually_assured_destruction_turn
+    @turn.pile_cards
+    assert_equal [], @turn.spoils_of_war
+    assert_equal [@card8], @player1.deck.cards
+    assert_equal [@card7], @player2.deck.cards
+  end
 end

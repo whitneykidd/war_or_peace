@@ -42,10 +42,14 @@ class Turn
       @spoils_of_war << @player1.deck.cards[0] && @player1.deck.cards.delete_at(0)
       @spoils_of_war << @player2.deck.cards[0] && @player2.deck.cards.delete_at(0)
 
-    else type == :war
+    elsif type == :war
       @spoils_of_war << @player1.deck.cards[0..2] && delete_cards(@player1)
       @spoils_of_war << @player2.deck.cards[0..2] && delete_cards(@player2)
       @spoils_of_war.flatten!
+
+    else type == :mutually_assured_destruction
+      delete_cards(@player1)
+      delete_cards(@player2)
     end
   end
 
