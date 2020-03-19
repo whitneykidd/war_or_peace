@@ -35,26 +35,27 @@ class WarTurnTest < Minitest::Test
     assert_equal [], @turn.spoils_of_war
   end
 
-  def test_returns_basic_type_of_turn
+  def test_returns_war_type_of_turn
     assert_equal :war, @turn.type
   end
 
-  def test_returns_basic_turn_winner
+  def test_returns_war_turn_winner
     assert_equal @player2, @turn.winner
   end
 
-
-  def test_can_pile_basic_turn_cards
+  def test_can_pile_war_turn_cards
     @turn.pile_cards
-    assert_equal [@card1, @card2, @card5, @card4, @card3, @card6], @turn.spoils_of_war
+    spoils_of_war_deck = [@card1, @card2, @card5, @card4, @card3, @card6]
+    assert_equal spoils_of_war_deck, @turn.spoils_of_war
+    assert_equal [@card8], @player1.deck.cards
+    assert_equal [@card7], @player2.deck.cards
   end
 
-  def test_can_award_spoils_for_basic_turn
-    skip
+  def test_can_award_spoils_for_war_turn
     @turn.pile_cards
-    @turn.award_spoils
-    assert_equal [@card8, @card1, @card2, @card5, @card4, @card3, @card6], @player1.deck.cards
-    assert_equal [@card7], @player2.deck.cards
-
+    @turn.award_spoils(@player2)
+    player2_deck = [@card7, @card1, @card2, @card5, @card4, @card3, @card6]
+    assert_equal [@card8], @player1.deck.cards
+    assert_equal player2_deck, @player2.deck.cards
   end
 end
