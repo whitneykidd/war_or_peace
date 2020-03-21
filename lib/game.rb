@@ -64,4 +64,16 @@ class Game
       @card52 = Card.new(:club, 'Ace', 14)
     ]
   end
+
+  def split_standard_deck
+    first_deck = standard_deck.sample(26)
+    first_deck.map do |card|
+      @deck1 << card
+    end
+
+    second_deck = standard_deck.sample(26)
+    second_deck.map do |card|
+      @deck2 << card
+    end
+  end
 end

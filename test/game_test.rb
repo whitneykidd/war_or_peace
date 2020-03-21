@@ -25,4 +25,11 @@ class GameTest < Minitest::Test
   def test_has_a_standard_52_card_deck
     assert_equal 52, @game.standard_deck.count
   end
+
+  def test_can_randomly_split_standard_deck_into_two_arrays
+    @game.split_standard_deck
+    assert_equal 26, @game.deck1.count
+    assert_equal 26, @game.deck2.count
+
+  end
 end
