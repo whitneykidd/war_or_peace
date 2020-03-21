@@ -21,4 +21,8 @@ class GameTest < Minitest::Test
     assert_equal [], @game.deck1
     assert_equal [], @game.deck2
   end
+
+  def test_has_a_standard_52_card_deck
+    assert_equal 52, @game.standard_deck.count
+  end
 end
