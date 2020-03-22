@@ -55,7 +55,21 @@ class Game
         puts ""
       end
 
+      if turn_count == 1000000
+        p "---------- DRAW ----------"
+      else
+        announce_winner
+      end
+
       break if turn_count == 1000000
+    end
+  end
+
+  def announce_winner
+    if player1.has_lost?
+      p "*~*~*~* #{player2.name} has won the game! *~*~*~*"
+    elsif player1.has_lost?
+      p "*~*~*~* #{player1.name} has won the game! *~*~*~*"
     end
   end
 end
