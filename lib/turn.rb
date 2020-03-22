@@ -75,6 +75,7 @@ class Turn
       player.deck.cards.map do |card|
         player.deck.cards.delete_at(0)
       end
+      require "pry"; binding.pry
     end
   end
 end

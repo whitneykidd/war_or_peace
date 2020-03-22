@@ -1,79 +1,60 @@
 class Game
-  attr_reader :deck1, :deck2
-  def initialize
-    @deck1 = []
-    @deck2 = []
+  attr_reader :player1, :player2
+
+  def initialize(player1, player2)
+    @player1 = player1
+    @player2 = player2
   end
 
-  def standard_deck
-    [
-      @card1 = Card.new(:heart, '2', 2),
-      @card2 = Card.new(:heart, '3', 3),
-      @card3 = Card.new(:heart, '4', 4),
-      @card4 = Card.new(:heart, '5', 5),
-      @card5 = Card.new(:heart, '6', 6),
-      @card6 = Card.new(:heart, '7', 7),
-      @card7 = Card.new(:heart, '8', 8),
-      @card8 = Card.new(:heart, '9', 9),
-      @card9 = Card.new(:heart, '10', 10),
-      @card10 = Card.new(:heart, 'Jack', 11),
-      @card11 = Card.new(:heart, 'Queen', 12),
-      @card12 = Card.new(:heart, 'King', 13),
-      @card13 = Card.new(:heart, 'Ace', 14),
+  def start
+    p "Welcome to War! (or Peace) This game will be played with 52 cards."
+    p "The players today are #{player1.name} and #{player2.name}."
+    p "Type 'GO' to start the game!"
+    p "---------------------------------------------------------------------"
+    user = gets.chomp.upcase
 
-      @card14 = Card.new(:diamond, '2', 2),
-      @card15 = Card.new(:diamond, '3', 3),
-      @card16 = Card.new(:diamond, '4', 4),
-      @card17 = Card.new(:diamond, '5', 5),
-      @card18 = Card.new(:diamond, '6', 6),
-      @card19 = Card.new(:diamond, '7', 7),
-      @card20 = Card.new(:diamond, '8', 8),
-      @card21 = Card.new(:diamond, '9', 9),
-      @card22 = Card.new(:diamond, '10', 10),
-      @card23 = Card.new(:diamond, 'Jack', 11),
-      @card24 = Card.new(:diamond, 'Queen', 12),
-      @card25 = Card.new(:diamond, 'King', 13),
-      @card26 = Card.new(:diamond, 'Ace', 14),
-
-      @card27 = Card.new(:spade, '2', 2),
-      @card28 = Card.new(:spade, '3', 3),
-      @card29 = Card.new(:spade, '4', 4),
-      @card30 = Card.new(:spade, '5', 5),
-      @card31 = Card.new(:spade, '6', 6),
-      @card32 = Card.new(:spade, '7', 7),
-      @card33 = Card.new(:spade, '8', 8),
-      @card34 = Card.new(:spade, '9', 9),
-      @card35 = Card.new(:spade, '10', 10),
-      @card36 = Card.new(:spade, 'Jack', 11),
-      @card37 = Card.new(:spade, 'Queen', 12),
-      @card38 = Card.new(:spade, 'King', 13),
-      @card39 = Card.new(:spade, 'Ace', 14),
-
-      @card40 = Card.new(:club, '2', 2),
-      @card41 = Card.new(:club, '3', 3),
-      @card42 = Card.new(:club, '4', 4),
-      @card43 = Card.new(:club, '5', 5),
-      @card44 = Card.new(:club, '6', 6),
-      @card45 = Card.new(:club, '7', 7),
-      @card46 = Card.new(:club, '8', 8),
-      @card47 = Card.new(:club, '9', 9),
-      @card48 = Card.new(:club, '10', 10),
-      @card49 = Card.new(:club, 'Jack', 11),
-      @card50 = Card.new(:club, 'Queen', 12),
-      @card51 = Card.new(:club, 'King', 13),
-      @card52 = Card.new(:club, 'Ace', 14)
-    ]
-  end
-
-  def split_standard_deck
-    first_deck = standard_deck.sample(26)
-    first_deck.map do |card|
-      @deck1 << card
+    if user == 'GO'
+      p "............... Starting Game ..............."
+      play_game
+    else
+      puts "Invalid input."
+      start
     end
+  end
 
-    second_deck = standard_deck.sample(26)
-    second_deck.map do |card|
-      @deck2 << card
+  def play_game
+    turn_count = 0
+    turn = Turn.new(player1, player2)
+
+    until player1.has_lost? || player2.has_lost?
+      if turn.type == :basic
+        winner = turn.winner
+        turn.pile_cards
+        turn.award_spoils(winner)
+        turn_count += 1
+        p "Turn #{turn_count}: BASIC - #{winner.name} won 2 cards"
+        p "Player1 card count = #{player1.deck.cards.count}"
+        p "Player2 card count = #{player2.deck.cards.count}"
+
+      elsif turn.type == :war
+        winner = turn.winner
+        turn.pile_cards
+        turn.award_spoils(winner)
+        turn_count += 1
+        p "Turn #{turn_count}: WAR - #{winner.name} won 6 cards"
+        p "Player1 card count = #{player1.deck.cards.count}"
+        p "Player2 card count = #{player2.deck.cards.count}"
+
+      elsif turn.type == :mutually_assured_destruction
+        turn.pile_cards
+        turn_count += 1
+        p "Turn #{turn_count}: *mutually assured destruction* 6 cards removed from play"
+        p "Player1 card count = #{player1.deck.cards.count}"
+        p "Player2 card count = #{player2.deck.cards.count}"
+
+      end
+
+      break if turn_count == 1000000
     end
   end
 end
