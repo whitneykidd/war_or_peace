@@ -72,10 +72,6 @@ class Turn
   end
 
   def two_index_rank(player)
-    if player.deck.cards.count <= 2
-      
-      puts "Anna guessed the error right!!!!!!!!"
-    end
     player.deck.rank_of_card_at(2)
   end
 
