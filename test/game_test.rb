@@ -16,8 +16,4 @@ class GameTest < Minitest::Test
   def test_it_exists
     assert_instance_of Game, @game
   end
-
-  def test_it_has_players
-    assert_equal @player1, @game.player1
-  end
 end
