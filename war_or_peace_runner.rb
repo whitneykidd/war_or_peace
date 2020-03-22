@@ -67,9 +67,7 @@ card50, card51, card52]
 shuffled_deck = full_deck.shuffle
 deck1 = Deck.new(shuffled_deck.shuffle.slice(0, 26))
 deck2 = Deck.new(shuffled_deck.shuffle.slice(26, 52))
-p deck1
-p "-----"
-p deck2
+
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
 
