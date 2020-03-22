@@ -64,10 +64,9 @@ card30, card31, card32, card33, card34, card35, card36, card37, card38, card39,
 card40, card41, card42, card43, card44, card45, card46, card47, card48, card49,
 card50, card51, card52]
 
-
-deck1 = Deck.new(standard_deck.shuffle.slice(0, 25))
-deck2 = Deck.new(standard_deck.shuffle.slice(26, 51))
-
+shuffled_deck = standard_deck.shuffle
+deck1 = Deck.new(shuffled_deck.shuffle.slice(0, 25))
+deck2 = Deck.new(shuffled_deck.shuffle.slice(26, 52))
 
 player1 = Player.new("Megan", deck1)
 player2 = Player.new("Aurora", deck2)
