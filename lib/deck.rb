@@ -21,7 +21,6 @@ class Deck
   end
 
   def add_card(card)
-    puts "adding #{card.class}"
     @cards.push(card)
   end
 end
