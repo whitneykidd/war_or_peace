@@ -13,13 +13,13 @@ class Game
     puts ""
     p "Type 'GO' to start the game!"
     p "---------------------------------------------------------------------"
-    user = gets.chomp.upcase
+    user_input = gets.chomp.upcase
 
-    if user == 'GO'
+    if user_input == 'GO'
       p "............... Starting Game ..............."
       play_game
     else
-      puts "Invalid input."
+      p "Invalid input."
       start
     end
   end

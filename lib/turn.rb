@@ -12,7 +12,7 @@ class Turn
     elsif zero_index_rank(player1) == zero_index_rank(player2) &&
       two_index_rank(player1) == two_index_rank(player2)
       :mutually_assured_destruction
-    else
+    elsif player1.deck.rank_of_card_at(0) == player2.deck.rank_of_card_at(0)
       :war
     end
   end
@@ -68,11 +68,15 @@ class Turn
 
   #Helper Methods
   def zero_index_rank(player)
-    player.deck.rank_of_card_at(0)
+    if player.deck.cards.count >= 2
+      player.deck.rank_of_card_at(0)
+    end
   end
 
   def two_index_rank(player)
-    player.deck.rank_of_card_at(2)
+    if player.deck.cards.count >= 3
+      player.deck.rank_of_card_at(2)
+    end
   end
 
   def delete_cards(player)
